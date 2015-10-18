@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<organization xmlns="http://www.example.org/employee">
+	<orgName>Adheris Corporation</orgName>
+	<departments>
+		<name>Development Department</name>
+		<employees>
+			<name>Tracy Keech</name>
+			<age>45</age>
+			<sex>Female</sex>
+		</employees>
+		<employees>
+			<name>Mike Hancock</name>
+			<age>50</age>
+			<sex>Male</sex>
+		</employees>
+	</departments>
+	<departments>
+		<name>Sqa Department</name>
+		<employees>
+			<name>Scott</name>
+			<age>45</age>
+			<sex>Male</sex>
+		</employees>
+	</departments>
+</organization>
