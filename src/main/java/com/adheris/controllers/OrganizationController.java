@@ -52,4 +52,10 @@ public class OrganizationController {
 		return null;
 	}
 	
+	// TODO -- 
+	// 1. Add method to get department like this url - http://localhost:8080/department/{department Id}
+	// 2. Add method to get all employes by age >= url http://localhost:8080/employees?age=45
+	// 3. Challenging - Put new employee to a department- sample http://localhost:8080/department/{department name} 
+	// This will be a post call. Think about this ???
+	
 }
