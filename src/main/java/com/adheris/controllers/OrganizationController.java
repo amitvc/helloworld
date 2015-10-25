@@ -8,13 +8,17 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.adheris.model.Department;
+import com.adheris.model.Employee;
 import com.adheris.model.Organization;
 
 @RestController
@@ -50,6 +54,26 @@ public class OrganizationController {
 			return new ResponseEntity (ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return null;
+	}
+	
+	@RequestMapping(value="/department/{deptId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
+	public ResponseEntity<String> addEmployee(@PathVariable("deptId") String departmentName, @RequestBody Employee employee) {
+		try {
+			JAXBContext context = JAXBContext.newInstance(Organization.class);
+			Unmarshaller unmarsherller = context.createUnmarshaller();
+			Marshaller marshaller = context.createMarshaller();
+			Organization org = (Organization) unmarsherller.unmarshal(new File ("config.xml"));
+			for (Department dept : org.getDepartments()) {
+				if (dept.getName().equalsIgnoreCase(departmentName)){
+					dept.addEmployee(employee);
+				}
+			}
+			marshaller.marshal(org, new File("config.xml"));
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String> (e.getMessage (), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity(departmentName + " added", HttpStatus.OK);
 	}
 	
 	// TODO -- 

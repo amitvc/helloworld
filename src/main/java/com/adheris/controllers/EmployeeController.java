@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,12 +23,14 @@ public class EmployeeController {
 	}
 	
 	
+	
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/date")
 	public String date() {
 		return new Date().toString();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/employee")
+	@RequestMapping(method = RequestMethod.GET, value = "/employee", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Employee>> empl() {
 		List<Employee> emp = new ArrayList<Employee>();
 		Employee empl = new Employee ();
@@ -41,7 +44,6 @@ public class EmployeeController {
 		empl.setSex("Male");
 		emp.add(empl);
 		return new ResponseEntity<List<Employee>>(emp, HttpStatus.OK);
-		
 	}
 	
 }

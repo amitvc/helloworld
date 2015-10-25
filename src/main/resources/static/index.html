@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employee management system</title>
+    <script src="scripts/angular.min.js"></script>
+</head>
+
+<body ng-controller="organizationController">
+    <div>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Sex</th>
+            </tr>
+            <tr ng-repeat="record in records">
+                <td>{{record.name}}</td>
+                <td>{{record.age}}</td>
+                <td>{{record.sex}}</td>
+            </tr>
+        </table>
+
+    </div>
+    <script src="scripts/app.js"></script>
+</body>
+
+
+</html>

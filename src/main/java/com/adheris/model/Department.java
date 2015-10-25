@@ -99,5 +99,11 @@ public class Department {
         }
         return this.employees;
     }
+    
+    public void addEmployee(Employee emp) {
+    	if(employees != null) {
+    		employees.add(emp);
+    	}
+    }
 
 }
