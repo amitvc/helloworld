@@ -54,8 +54,6 @@ public class AppMain {
 		
 	}
 	public static void main(String[] args) {
-		//AppMain.writeConfig();
 		SpringApplication.run(AppMain.class, args);
 	}
-
 }

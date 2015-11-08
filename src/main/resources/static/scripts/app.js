@@ -1,15 +1,24 @@
 (function(){
-     angular.module("myApp",[]);
-    
-    var tracyController = function($scope, $http, $log) {
-            $http.get("/employee").success(function(response) {
-                $scope.records = response;
-            }).error(function(response) {
-                $log.error("Problem in calling config resource");
-            });
-    }
-    
-    var organizationController = angular.module("myApp").controller("organizationController",tracyController);
-    organizationController.$inject = ['$scope', '$http','$log'];
-    
+    var myApp = angular.module("myApp",["ngRoute"]);
+     
+    myApp.config(function($routeProvider) {
+        $routeProvider.when("/", {
+            templateUrl : "views/organizations.html",
+            controller : "organizationController"
+        })
+        .when("/organizations", {
+            templateUrl : "views/organizations.html",
+            controller : "organizationController"
+        })
+        .when("/departments", {
+            templateUrl : "views/departments.html",
+            controller : "departmentController"
+        })
+        .when("/employees", {
+            templateUrl : "views/employees.html",
+            controller : "employeeController"
+        })
+        .otherwise({redirect:"/"});
+                            
+    });
 })();
