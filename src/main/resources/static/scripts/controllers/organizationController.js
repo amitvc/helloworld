@@ -5,8 +5,28 @@
  *
  */
 (function(){
-    var organizationController = function($scope, $log){
-        $scope.hello = "OrganizationController";
+    var organizationController = function($scope, $log, dataService) {
+       $scope.gridOptions = {
+            data: dataService.getOrganizationInfo(),
+            columnDefs: [
+            { name: 'name', displayName: "Company Name"},
+            { name: 'revenue', displayName : "Revenue"},
+            {name : "address", displayName : "Address"},
+            ]
+        };
+        
+       if(dataService.getOrganizationData() == undefined) {
+           dataService.getData("/resource/organization").then(function(response) {
+               $log.info("Call to /resource/organization completed. http status code " + response.status);
+                dataService.setOrganizationData(response.data);
+                $log.info(response.data);
+               $scope.gridOptions.data = dataService.getOrganizationInfo();
+            }, function(response) {
+                $scope.status = response.status;
+           });
+       } else {
+           $log.info("Already received data from server. Call the dataService to get organization data");
+       }
     }
 
     /**
@@ -16,5 +36,5 @@
     angular.module("myApp").controller("organizationController",organizationController);
     //This is cleaner way to inject dependencies that this controller needs and also helps protect against js minifiers
     // obfuscating the names of the dependencies.
-    organizationController.$inject = ["$scope", "$log"];
+    organizationController.$inject = ["$scope", "$log","dataService"];
 })();

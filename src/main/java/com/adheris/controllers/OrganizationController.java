@@ -24,7 +24,7 @@ import com.adheris.model.Organization;
 @RestController
 public class OrganizationController {
 
-	@RequestMapping(value = "/organization", method = RequestMethod.GET)
+	@RequestMapping(value = "/resource/organization", method = RequestMethod.GET)
 	public ResponseEntity<Organization> getOrganization() {
 		try {
 			JAXBContext context = JAXBContext.newInstance(Organization.class);

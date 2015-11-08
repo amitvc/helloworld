@@ -43,8 +43,17 @@ public class Organization {
 
     @XmlElement(required = true)
     protected String orgName;
+    
+    @XmlElement(required = true)
+    private String address;
+    
+    @XmlElement(required=true)
+    private Long revenue;
+    
     @XmlElement(required = true)
     protected List<Department> departments;
+    
+    
 
     /**
      * Gets the value of the name property.
@@ -70,7 +79,23 @@ public class Organization {
         this.orgName = value;
     }
 
-    /**
+    public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Long getRevenue() {
+		return revenue;
+	}
+
+	public void setRevenue(Long revenue) {
+		this.revenue = revenue;
+	}
+
+	/**
      * Gets the value of the departments property.
      * 
      * <p>

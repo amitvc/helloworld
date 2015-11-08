@@ -16,15 +16,64 @@
         this.getOrganizationData = function() {
             return this.organizationData;
         }
+        
+        this.setOrganizationData = function(val) {
+            this.organizationData = val;
+        }
+        
+        this.getOrganizationInfo = function() {
+            var orgData = [];
+                
+            if(this.organizationData != undefined) {
+                var temp = {};
+                temp.name = this.organizationData.orgName;
+                temp.revenue = this.organizationData.revenue;
+                temp.address = this.organizationData.address;
+                orgData.push(temp);
+            }
+            
+            return orgData;
+        }
 
+        this.getDepartmentInfo = function() {
+            var deptData = [];
+            
+            if(this.organizationData != undefined) {
+                for(var i=0; i < this.organizationData.departments.length; i++) {
+                    var temp = {};
+                    temp.name = this.organizationData.departments[i].name;
+                    temp.number = this.organizationData.departments[i].employees.length;
+                    deptData.push(temp);
+                }
+            }
+            return deptData;
+        }
 
-
+        this.getEmployeeInfo = function() {
+            var empData = [];
+            
+            if(this.organizationData != undefined) {
+                for(var i=0; i < this.organizationData.departments.length; i++) {                    
+                    for(var j=0; j < this.organizationData.departments[i].employees.length; j++){
+                        var temp = {};
+                        temp.department = this.organizationData.departments[i].name;
+                        temp.name = this.organizationData.departments[i].employees[j].name;
+                        temp.age = this.organizationData.departments[i].employees[j].age;
+                        temp.sex = this.organizationData.departments[i].employees[j].sex;
+                        empData.push(temp);   
+                    }
+                 }
+            }
+            return empData;
+        }
+        
+        
         /**
          * This function is used to make a http get call to provided url.
          * The http.get call returns a promise(basically a callback function) which the caller needs to handle.
          * Either the http.get call will return success or error. The caller (typically your controller)
          * will call service methods like this. See e.g below
-         * dataService.getData(someurl).then(function(response){
+         * dataService.getData(some url).then(function(response){
 
             },function(response){
 

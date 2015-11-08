@@ -34,7 +34,11 @@
     		<element name="name" type="string" maxOccurs="1"
     			minOccurs="1">
     		</element>
-    		<element name="departments" type="tns:department" maxOccurs="unbounded" minOccurs="1"></element>
+    		<element name="address" type="string" maxOccurs="1" minOccurs="1"></element>
+    		<element name="revenue" type="long" maxOccurs="1" minOccurs="1"></element>
+    		<element name="departments" type="tns:department"
+    			maxOccurs="unbounded" minOccurs="1">
+    		</element>
     	</sequence>
     </complexType>
     
