@@ -8,7 +8,10 @@
             columnDefs: [
             { name: 'name', displayName: "Department Name"},
             { name: 'number', displayName : "No of Employees"},
-            ]
+            ],
+            enableGridMenu: true,
+            exporterCsvFilename: 'departments.csv',
+            exporterPdfDefaultStyle: {fontSize: 9},
         };
         
        if(dataService.getOrganizationData() == undefined) {

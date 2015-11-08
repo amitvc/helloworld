@@ -1,5 +1,6 @@
 (function(){
-    var myApp = angular.module("myApp",["ngRoute","ui.grid"]);
+    // All external dependencies we need should be injected during bootstrapping the app
+    var myApp = angular.module("myApp",["ngRoute","ui.grid","ui.grid.exporter"]);
      
     myApp.config(function($routeProvider) {
         $routeProvider.when("/", {
