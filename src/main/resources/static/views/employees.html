@@ -1,1 +1,20 @@
-<div id="grid1" ui-grid="gridOptions" class="grid"></div>
+<div id="grid1" ui-grid="gridOptions" ui-grid-exporter class="grid"></div>
+<form>
+  <div class="form-group">
+    <label>Department</label>
+    <input type="text" class="form-control"  placeholder="Enter Department">
+  </div>
+  <div class="form-group">
+    <label>Employee Name</label>
+    <input type="text" class="form-control" placeholder="Employee Name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">Age</label>
+    <input type="text" placeholder="Age">
+  </div>
+  <div class="form-group">
+      <label>Sex</label>
+      <input type="text">
+  </div>
+  <button type="button" class="btn btn-default" ng-click="onSubmit()">Submit</button>
+</form>

@@ -4,6 +4,7 @@
     //$log is a Simple service for logging. Default implementation safely writes the message into the browser's console (if presen
     var employeeController = function($scope, $log, dataService) {
  
+       
         $scope.gridOptions = {
             enableFiltering: true,
             data: dataService.getEmployeeInfo(),
@@ -12,7 +13,10 @@
             { name: 'name', displayName: "Employee Name"},
             { name: 'age', displayName: "Age"},
             { name: 'sex', displayName: 'Sex'},
-            ]
+            ],
+            enableGridMenu: true,
+            exporterCsvFilename: 'employees.csv',
+            exporterPdfDefaultStyle: {fontSize: 9},
         };
         
        if(dataService.getOrganizationData() == undefined) {

@@ -2,3 +2,8 @@
     margin : 0 auto;
     align-content: center;
 }
+
+.grid {
+    width: 1000px;
+    height: 400px;
+}

@@ -12,7 +12,10 @@
             { name: 'name', displayName: "Company Name"},
             { name: 'revenue', displayName : "Revenue"},
             {name : "address", displayName : "Address"},
-            ]
+            ],
+            enableGridMenu: true,
+            exporterCsvFilename: 'organization.csv',
+            exporterPdfDefaultStyle: {fontSize: 9},
         };
         
        if(dataService.getOrganizationData() == undefined) {
