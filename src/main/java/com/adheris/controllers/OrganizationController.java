@@ -38,7 +38,7 @@ public class OrganizationController {
 	}
 	
 	// localhost:8080/department?deptId=xyz
-	@RequestMapping(value= "/department", method = RequestMethod.GET)
+	@RequestMapping(value= "/resource/department", method = RequestMethod.GET)
 	public ResponseEntity<Department> getDepartment(@RequestParam("deptId") String deptId) {
 		try {
 			JAXBContext context = JAXBContext.newInstance(Organization.class);
@@ -56,24 +56,24 @@ public class OrganizationController {
 		return null;
 	}
 	
-	@RequestMapping(value="/department/{deptId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
-	public ResponseEntity<String> addEmployee(@PathVariable("deptId") String departmentName, @RequestBody Employee employee) {
+	@RequestMapping(value="/resource/department/{deptId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE )
+	public ResponseEntity<Employee> addEmployee(@PathVariable("deptId") String deptId, @RequestBody Employee employee) {
 		try {
 			JAXBContext context = JAXBContext.newInstance(Organization.class);
 			Unmarshaller unmarsherller = context.createUnmarshaller();
 			Marshaller marshaller = context.createMarshaller();
 			Organization org = (Organization) unmarsherller.unmarshal(new File ("config.xml"));
 			for (Department dept : org.getDepartments()) {
-				if (dept.getName().equalsIgnoreCase(departmentName)){
+				if (dept.getName().equalsIgnoreCase(deptId)){
 					dept.addEmployee(employee);
 				}
 			}
 			marshaller.marshal(org, new File("config.xml"));
 		} catch(Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<String> (e.getMessage (), HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Employee> (employee, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity(departmentName + " added", HttpStatus.OK);
+		return new ResponseEntity(employee, HttpStatus.OK);
 	}
 	
 	// TODO -- 

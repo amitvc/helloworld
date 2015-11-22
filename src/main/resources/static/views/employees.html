@@ -2,19 +2,19 @@
 <form>
   <div class="form-group">
     <label>Department</label>
-    <input type="text" class="form-control"  placeholder="Enter Department">
+    <input type="text" class="form-control"  placeholder="Enter Department" ng-model="newEmployee.departmentName">
   </div>
   <div class="form-group">
     <label>Employee Name</label>
-    <input type="text" class="form-control" placeholder="Employee Name">
+    <input type="text" class="form-control" placeholder="Employee Name" ng-model="newEmployee.employeeName">
   </div>
   <div class="form-group">
     <label for="exampleInputFile">Age</label>
-    <input type="text" placeholder="Age">
+    <input type="text" placeholder="Age" ng-model="newEmployee.age">
   </div>
   <div class="form-group">
       <label>Sex</label>
-      <input type="text">
+      <input type="text" ng-model="newEmployee.sex">
   </div>
   <button type="button" class="btn btn-default" ng-click="onSubmit()">Submit</button>
 </form>
