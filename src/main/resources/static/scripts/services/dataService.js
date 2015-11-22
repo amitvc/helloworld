@@ -81,13 +81,17 @@
                 var self = this;
                 self.counter = i;
                 console.log("Sending new employee to backend service " + employee);
-                this.postData(url, employee).then(function(response) {
-                    $log.info("Call to /resource/department completed. http status code " + response.status);
-                    self.organizationData.departments[self.counter].employees.push(employee);
-                    refreshView();
-                 }, function(response) {
-                     console.log("Problme calling /resource/department " +response.status);
-                });
+                return this.postData(url, employee);
+              }
+            }
+          }
+        }
+
+        this.addNewEmployee = function(departName, employee) {
+          if(this.organizationData != undefined) {
+            for(var i=0; i < this.organizationData.departments.length; i++){
+              if(departName == this.organizationData.departments[i].name) {
+                this.organizationData.departments[i].employees.push(employee);
               }
             }
           }

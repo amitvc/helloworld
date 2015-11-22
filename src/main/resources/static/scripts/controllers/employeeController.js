@@ -9,12 +9,17 @@
 
         $scope.onSubmit = function() {
            console.log("From the employee view - "+$scope.newEmployee);
-           dataService.setNewEmployee($scope.newEmployee,$scope.refreshView);
-        }
-
-        $scope.refreshView = function() {
-          console.log("Refreshing the grid view");
-          $scope.gridOptions.data = dataService.getEmployeeInfo();
+           dataService.setNewEmployee($scope.newEmployee).then(function(response) {
+               $log.info("Call to /resource/department completed. http status code " + response.status);
+               var employee = {};
+               employee.name = $scope.newEmployee.employeeName;
+               employee.age = $scope.newEmployee.age;
+               employee.sex = $scope.newEmployee.sex;
+               dataService.addNewEmployee($scope.newEmployee.departmentName,employee);
+               $scope.gridOptions.data = dataService.getEmployeeInfo();
+            }, function(response) {
+                console.log("Problme calling /resource/department " +response.status);
+           });
         }
 
         $scope.gridOptions = {
