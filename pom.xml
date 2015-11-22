@@ -4,7 +4,7 @@
   <artifactId>helloworld</artifactId>
   <version>1.0</version>
   <name>Hello World</name>
-  <description>Hello World Spring boot application</description>
+  <description>Application to help learn spring and angular js</description>
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
