@@ -44,8 +44,12 @@
                 for(var i=0; i < this.organizationData.departments.length; i++) {
                     var temp = {};
                     temp.name = this.organizationData.departments[i].name;
-                    temp.number = this.organizationData.departments[i].employees.length;
-                    deptData.push(temp);
+                    if (this.organizationData.departments[i].employees != null) {
+                    	temp.number = this.organizationData.departments[i].employees.length;
+                    } else {
+                    	temp.number = 0;
+                    }
+                	deptData.push(temp);                    
                 }
             }
             return deptData;
@@ -97,7 +101,25 @@
           }
         }
 
+        this.setNewDepartment = function(data, refreshView) {
+        	console.log("Set new dept");
+            if(this.organizationData != undefined) {
+                var department = {};
+                department.name = data.departmentName;            	
+                var url = "/resource/department/";
+                console.log(url);
+                var self = this;
+                console.log("Sending new department to backend service " + department);
+                return this.postData(url, department);           	
+            }
+          }
 
+          this.addNewDepartment = function(departmentName, department) {
+            if(this.organizationData != undefined) {
+               this.organizationData.departments.push(department);
+            }
+          }
+          
         /**
          * This function is used to make a http get call to provided url.
          * The http.get call returns a promise(basically a callback function) which the caller needs to handle.

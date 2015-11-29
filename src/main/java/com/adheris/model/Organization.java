@@ -124,4 +124,7 @@ public class Organization {
         return this.departments;
     }
 
+    public void addDepartment(Department dep) {
+    	departments.add(dep);
+    }
 }

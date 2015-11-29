@@ -75,6 +75,21 @@ public class OrganizationController {
 		}
 		return new ResponseEntity(employee, HttpStatus.OK);
 	}
+	@RequestMapping(value="/resource/department/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE )
+	public ResponseEntity<Department> addDepartment(@RequestBody Department department) {
+		try {
+			JAXBContext context = JAXBContext.newInstance(Organization.class);
+			Unmarshaller unmarsherller = context.createUnmarshaller();
+			Marshaller marshaller = context.createMarshaller();
+			Organization org = (Organization) unmarsherller.unmarshal(new File ("config.xml"));
+			org.addDepartment(department);
+			marshaller.marshal(org, new File("config.xml"));
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<Department> (department, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity(department, HttpStatus.OK);
+	}
 	
 	// TODO -- 
 	// 1. Add method to get department like this url - http://localhost:8080/department/{department Id}

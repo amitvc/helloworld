@@ -1,1 +1,8 @@
 <div id="grid1" ui-grid="gridOptions" ui-grid-exporter class="grid"></div>
+<form>
+  <div class="form-group">
+      <label>Department Name</label>
+      <input type="text" placeholder="Department Name" ng-model="newDepartment.departmentName">
+  </div>
+  <button type="button" class="btn btn-default" ng-click="onSubmit()">Submit</button>
+</form>
