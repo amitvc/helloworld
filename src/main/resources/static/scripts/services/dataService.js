@@ -59,14 +59,16 @@
             var empData = [];
             if(this.organizationData != undefined) {
                 for(var i=0; i < this.organizationData.departments.length; i++) {
-                    for(var j=0; j < this.organizationData.departments[i].employees.length; j++){
-                        var temp = {};
-                        temp.department = this.organizationData.departments[i].name;
-                        temp.name = this.organizationData.departments[i].employees[j].name;
-                        temp.age = this.organizationData.departments[i].employees[j].age;
-                        temp.sex = this.organizationData.departments[i].employees[j].sex;
-                        empData.push(temp);
-                    }
+                	if(this.organizationData.departments[i].employees != undefined) {
+                		for(var j=0; j < this.organizationData.departments[i].employees.length; j++){
+                            var temp = {};
+                            temp.department = this.organizationData.departments[i].name;
+                            temp.name = this.organizationData.departments[i].employees[j].name;
+                            temp.age = this.organizationData.departments[i].employees[j].age;
+                            temp.sex = this.organizationData.departments[i].employees[j].sex;
+                            empData.push(temp);
+                        }	
+                	}
                  }
             }
             return empData;
