@@ -43,38 +43,45 @@
 
         this.getDepartmentInfo = function() {
             var deptData = [];
-
-            if(this.organizationData != undefined) {
-                for(var i=0; i < this.organizationData.departments.length; i++) {
-                    var temp = {};
-                    temp.name = this.organizationData.departments[i].name;
-                    if (this.organizationData.departments[i].employees != null) {
-                    	temp.number = this.organizationData.departments[i].employees.length;
-                    } else {
-                    	temp.number = 0;
-                    }
-                	deptData.push(temp);
+            if(this.appData != undefined) {
+              for(var i=0; i < this.appData.organizationList.length;i++) {
+                if(this.appData.organizationList[i].orgName == this.orgName) {
+                  for(var j=0; j < this.appData.organizationList[i].departments.length; j++) {
+                        var temp = {};
+                        temp.name = this.appData.organizationList[i].departments[j].name;
+                        if (this.appData.organizationList[i].departments[j].employees != null) {
+                          temp.number = this.appData.organizationList[i].departments[j].employees.length;
+                        } else {
+                          temp.number = 0;
+                        }
+                      deptData.push(temp);
+                  }
                 }
+              }
             }
             return deptData;
         }
 
         this.getEmployeeInfo = function() {
             var empData = [];
-            if(this.organizationData != undefined) {
-                for(var i=0; i < this.organizationData.departments.length; i++) {
-                	if(this.organizationData.departments[i].employees != undefined) {
-                		for(var j=0; j < this.organizationData.departments[i].employees.length; j++){
+            if(this.appData != undefined) {
+                for(var i=0; i < this.appData.organizationList.length; i++) {
+                  if(this.appData.organizationList[i].orgName == this.orgName) {
+                      for(var dept of this.appData.organizationList[i].departments) {
+                        if(dept.employees != undefined) {
+                          for(var emp of dept.employees) {
                             var temp = {};
-                            temp.department = this.organizationData.departments[i].name;
-                            temp.name = this.organizationData.departments[i].employees[j].name;
-                            temp.age = this.organizationData.departments[i].employees[j].age;
-                            temp.sex = this.organizationData.departments[i].employees[j].sex;
+                            temp.department = dept.name;
+                            temp.name = emp.name;
+                            temp.age = emp.age;
+                            temp.sex = emp.sex;
                             empData.push(temp);
+                          }
                         }
-                	}
-                 }
-            }
+                      }
+                  }
+                }
+              }
             return empData;
         }
 

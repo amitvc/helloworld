@@ -6,8 +6,7 @@
 
         $scope.newDepartment = {};
         $scope.service = dataService;
-        $scope.orgData = dataService.getOrganizationInfo();
-
+        $scope.selectedOrgName = dataService.getSelectedOrgName();
         $scope.gridOptions = {
             data: dataService.getDepartmentInfo(),
             columnDefs: [

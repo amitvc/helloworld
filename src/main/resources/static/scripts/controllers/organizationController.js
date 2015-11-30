@@ -41,7 +41,6 @@
       }
 
 
-
       // This function gets called when the user selects the organization.
       $scope.organizationSelected = function() {
         // Update the dataService with the selected orgname so other controllers when they are loaded

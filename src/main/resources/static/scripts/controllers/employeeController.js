@@ -36,17 +36,18 @@
             exporterPdfDefaultStyle: {fontSize: 9},
         };
 
-       if(dataService.getOrganizationData() == undefined) {
-            dataService.getData("/resource/organization").then(function(response) {
-               $log.info("Call to /resource/organization completed. http status code " + response.status);
-                dataService.setOrganizationData(response.data);
+       if(dataService.getAppData() == undefined) {
+            dataService.getData("/resource/config").then(function(response) {
+               $log.info("Call to /resource/config completed. http status code " + response.status);
+                dataService.setAppData(response.data);
                 $log.info(response.data);
-               $scope.gridOptions.data = dataService.getEmployeeInfo();
+                $scope.gridOptions.data = dataService.getEmployeeInfo();
             }, function(response) {
                 $scope.status = response.status;
            });
        }else {
            $log.info("Employee Controller already received data from server. Call the dataService to get organization data");
+           $scope.gridOptions.data = dataService.getEmployeeInfo();
        }
     }
 
