@@ -1,1 +1,7 @@
+<div>
+  <select  ng-model="selectedOrgName" ng-change="organizationSelected()">
+      <option ng-repeat="option in orgData" value="{{option.name}}">{{option.name}}</option>
+  </select>
+  <label>{{selectedOrgName}}</label>
+</div>
 <div id="grid1" ui-grid="gridOptions" ui-grid-exporter class="grid"></div>

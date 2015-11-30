@@ -11,7 +11,7 @@
         // Initialize this variable to undefined. This will be fetched and populated by making call to the backend
         //service.
         this.appData = undefined;
-
+        this.orgName = undefined;
         this.getAppData = function() {
             return this.appData;
         }
@@ -20,6 +20,12 @@
             this.appData = val;
         }
 
+        this.setSelectedOrgName = function(val) {
+          this.orgName = val;
+        }
+        this.getSelectedOrgName = function() {
+          return this.orgName;
+        }
         this.getOrganizationInfo = function() {
             var orgData = [];
             if(this.appData != undefined) {

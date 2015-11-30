@@ -3,10 +3,11 @@
     // Any items that you add in $scope will be available to the view that this controller is passed to.
     //$log is a Simple service for logging. Default implementation safely writes the message into the browser's console (if present)
     var departmentController = function($scope,$log, dataService) {
-    	
+
         $scope.newDepartment = {};
         $scope.service = dataService;
-        
+        $scope.orgData = dataService.getOrganizationInfo();
+
         $scope.gridOptions = {
             data: dataService.getDepartmentInfo(),
             columnDefs: [
@@ -17,7 +18,7 @@
             exporterCsvFilename: 'departments.csv',
             exporterPdfDefaultStyle: {fontSize: 9},
         };
-        
+
         $scope.onSubmit = function() {
             console.log("From the department view - "+$scope.newDepartment);
             dataService.setNewDepartment($scope.newDepartment).then(function(response) {
@@ -30,10 +31,10 @@
                  console.log("Problem calling /resource/department " +response.status);
             });
          }
-        
-       if(dataService.getOrganizationData() == undefined) {
-           dataService.getData("/resource/organization").then(function(response) {
-               $log.info("Call to /resource/organization completed. http status code " + response.status);
+
+       if(dataService.getAppData() == undefined) {
+           dataService.getData("/resource/config").then(function(response) {
+               $log.info("Call to /resource/config completed. http status code " + response.status);
                 dataService.setOrganizationData(response.data);
                 $log.info(response.data);
                $scope.gridOptions.data = dataService.getDepartmentInfo();
@@ -44,9 +45,9 @@
            $log.info("Already received data from server. Call the dataService to get organization data");
        }
     }
-    
-    // Each controller is responsible for setting itself with the myApp module.   
+
+    // Each controller is responsible for setting itself with the myApp module.
     angular.module("myApp").controller("departmentController",departmentController);
     departmentController.$inject = ['$scope','$log','dataService'];
-    
+
 })();
