@@ -10,30 +10,28 @@
 
         // Initialize this variable to undefined. This will be fetched and populated by making call to the backend
         //service.
+        this.appData = undefined;
 
-        this.organizationData = undefined;
-
-
-
-        this.getOrganizationData = function() {
-            return this.organizationData;
+        this.getAppData = function() {
+            return this.appData;
         }
 
-        this.setOrganizationData = function(val) {
-            this.organizationData = val;
+        this.setAppData = function(val) {
+            this.appData = val;
         }
 
         this.getOrganizationInfo = function() {
             var orgData = [];
+            if(this.appData != undefined) {
+                for(var i=0; i < this.appData.organizationList.length;i++) {
+                  var temp = {};
+                  temp.name = this.appData.organizationList[i].orgName;
+                  temp.revenue = this.appData.organizationList[i].revenue;
+                  temp.address = this.appData.organizationList[i].address;
+                  orgData.push(temp);
+                }
 
-            if(this.organizationData != undefined) {
-                var temp = {};
-                temp.name = this.organizationData.orgName;
-                temp.revenue = this.organizationData.revenue;
-                temp.address = this.organizationData.address;
-                orgData.push(temp);
             }
-
             return orgData;
         }
 
@@ -49,7 +47,7 @@
                     } else {
                     	temp.number = 0;
                     }
-                	deptData.push(temp);                    
+                	deptData.push(temp);
                 }
             }
             return deptData;
@@ -67,7 +65,7 @@
                             temp.age = this.organizationData.departments[i].employees[j].age;
                             temp.sex = this.organizationData.departments[i].employees[j].sex;
                             empData.push(temp);
-                        }	
+                        }
                 	}
                  }
             }
@@ -107,12 +105,12 @@
         	console.log("Set new dept");
             if(this.organizationData != undefined) {
                 var department = {};
-                department.name = data.departmentName;            	
+                department.name = data.departmentName;
                 var url = "/resource/department/";
                 console.log(url);
                 var self = this;
                 console.log("Sending new department to backend service " + department);
-                return this.postData(url, department);           	
+                return this.postData(url, department);
             }
           }
 
@@ -121,7 +119,7 @@
                this.organizationData.departments.push(department);
             }
           }
-          
+
         /**
          * This function is used to make a http get call to provided url.
          * The http.get call returns a promise(basically a callback function) which the caller needs to handle.

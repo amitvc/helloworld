@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.adheris.model.Config;
 import com.adheris.model.Department;
 import com.adheris.model.Employee;
 import com.adheris.model.Organization;
@@ -24,13 +25,13 @@ import com.adheris.model.Organization;
 @RestController
 public class OrganizationController {
 
-	@RequestMapping(value = "/resource/organization", method = RequestMethod.GET)
-	public ResponseEntity<Organization> getOrganization() {
+	@RequestMapping(value = "/resource/config", method = RequestMethod.GET)
+	public ResponseEntity<Config> getOrganization() {
 		try {
-			JAXBContext context = JAXBContext.newInstance(Organization.class);
+			JAXBContext context = JAXBContext.newInstance(Config.class);
 			Unmarshaller unmarshaller = context.createUnmarshaller();
-			Organization org = (Organization) unmarshaller.unmarshal(new File ("config.xml"));
-			return new ResponseEntity<Organization>(org, HttpStatus.OK);
+			Config config = (Config) unmarshaller.unmarshal(new File ("config.xml"));
+			return new ResponseEntity<Config>(config, HttpStatus.OK);
 		}catch(Exception ex) {
 			ex.printStackTrace();
 			return new ResponseEntity (ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

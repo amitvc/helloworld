@@ -3,7 +3,7 @@
 // See <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Any modifications to this file will be lost upon recompilation of the source schema. 
 // Generated on: 2015.10.18 at 01:25:01 PM EDT 
-//
+//namespace = "http://www.example.org/employee"
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.example.org/employee", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package com.adheris.model;
